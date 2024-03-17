@@ -20,7 +20,7 @@ class App {
         Player player11 = new Player("KL Rahul", true, false);
         
         ArrayList<Player> teamAPlayers = new ArrayList<>();
-        // Add players to teamAPlayers ArrayList
+        // Add players to teamAPlayers 
         teamAPlayers.add(player1);
         teamAPlayers.add(player2);
         teamAPlayers.add(player3);
@@ -47,7 +47,7 @@ class App {
         Player player11b = new Player("Labuschagne", true, false);
         ArrayList<Player> teamBPlayers = new ArrayList<>();
         
-        // Add players to teamBPlayers ArrayList
+        // Add players to teamBPlayers 
         teamBPlayers.add(player1b);
         teamBPlayers.add(player2b);
         teamBPlayers.add(player3b);
@@ -59,9 +59,10 @@ class App {
         teamBPlayers.add(player9b);
         teamBPlayers.add(player10b);
         teamBPlayers.add(player11b); 
-        // Create Team objects
-        Team teamA = new Team("Team A", teamAPlayers);
-        Team teamB = new Team("Team B", teamBPlayers);
+        // Create TeamA objects
+        Team teamA = new Team("India", teamAPlayers);
+         // Create TeamB objects
+        Team teamB = new Team("Australia", teamBPlayers);
         
         System.out.println("Team A:");        
         System.out.println(teamA);
