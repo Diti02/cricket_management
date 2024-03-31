@@ -53,6 +53,14 @@ public class Match {
    private void simulateOver(Team battingTeam, Team bowlingTeam) {
         Random random = new Random();
         int sum=0;
+        // Get the current batsman
+        Player currentBatsman = battingTeam.getCurrentBatsman();
+        
+        // Get the current bowler
+        Player currentBowler = bowlingTeam.getCurrentBowler();
+        
+        System.out.println("Current batsman: " + currentBatsman.getName());
+        System.out.println("Current bowler: " + currentBowler.getName());
         
         for (int ball = 0; ball < 6; ball++) {
             int runs = random.nextInt(8); 
@@ -73,10 +81,11 @@ public class Match {
             
             
 
-            if (battingTeam.wickets==2) {
+            if (battingTeam.wickets==10) {
                 break;
             }
         }
+        bowlingTeam.setNextBowler();
 
         System.out.println("End of Over: " + battingTeam.getName());
         System.out.println("Run scored: "+sum);
