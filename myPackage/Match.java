@@ -29,7 +29,7 @@ public class Match {
         System.out.println("\n \nBatting Team:" + teamB.getName() + "\n" + "Bowling Team:" + teamA.getName());
          int f=1;
          for (int i = 0; i < overs; i++) {
-           System.out.println(teamA.getName()+" requires: "+(teamA.totalRuns-teamB.totalRuns)+ "runs to win");
+           System.out.println(teamB.getName()+" requires: "+(teamA.totalRuns-teamB.totalRuns)+ "runs to win");
             System.out.println("Over " + (i + 1) + ":");
             simulateOver(teamB, teamA);
             if (teamB.wickets>teamA.wickets) {
