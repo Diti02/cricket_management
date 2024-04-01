@@ -1,6 +1,7 @@
 import myPackage.*;
 import java.util.ArrayList;
 // import java.util.Random;
+import java.util.List;
 
 
 class App {
@@ -70,9 +71,33 @@ class App {
         System.out.println("\nTeam B:");
         System.out.println(teamB);
 
+        // Insert teams into the database
+        TeamDAO.insertTeam(teamA);
+        TeamDAO.insertTeam(teamB);
 
+
+        // Insert players into the database
+        for (Player player : teamAPlayers) {
+            PlayerDAO.insertPlayer(player);
+        }
+
+        // Insert players into the database
+        for (Player player : teamBPlayers) {
+            PlayerDAO.insertPlayer(player);
+        }
         // Start the match
-        Match match = new Match(teamA, teamB, 10); 
+        Match match = new Match(teamA, teamB, 10, ""); 
         match.simulateMatch();
+        MatchDAO.insertMatch(match);
+        
+
+        List<Match> matches = MatchDAO.getAllMatches();
+
+        // Display the retrieved matches
+        for (Match retrievedMatch : matches) {
+            System.out.println(retrievedMatch);
+        }
+
+        
     }
 }

@@ -10,7 +10,7 @@ public class Player {
         this.name = name;
         this.isBatsman = isBatsman;
         this.isBowler = isBowler;
-        // this.isOnStrike = false;
+        this.isOnStrike = false;
     }
 
     public String getName() {

@@ -5,13 +5,29 @@ public class Match {
     private Team teamA;
     private Team teamB;
     private int overs; 
+    private String result="";
 
-    public Match(Team teamA, Team teamB, int overs) {
+    public Match(Team teamA, Team teamB, int overs, String result) {
         this.teamA = teamA;
         this.teamB = teamB;
         this.overs = overs;
+        this.result=result;
+    }
+    public Team getTeamA() {
+        return teamA;
     }
 
+    public Team getTeamB() {
+        return teamB;
+    }
+
+    public int getOvers() {
+        return overs;
+    }
+
+    public String getResult() {
+        return result;
+    }
     public void simulateMatch() {
         System.out.println("\nMatch between " + teamA.getName() + " and " + teamB.getName() + " started!\n");
         

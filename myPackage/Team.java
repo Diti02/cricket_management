@@ -17,6 +17,9 @@ public class Team {
         this.wickets = 0;
         
     }
+    public String getName() {
+        return name;
+    }
 
     public void rotateStrike() {
         // Rotate the strike between the current batsman and non-striker
@@ -25,9 +28,7 @@ public class Team {
         players.get(currentBatsmanIndex).setOnStrike(true);
     }
     
-    public String getName() {
-        return name;
-    }
+    
     public Player getCurrentBatsman() {
         return players.get(currentBatsmanIndex);
     }
