@@ -5,13 +5,22 @@ public class Match {
     private Team teamA;
     private Team teamB;
     private int overs; 
-    private String result="";
+    public String result="";
+    public int teamARuns;
+    public int teamAWickets;
+    public int teamBRuns;
+    public int teamBWickets;
+    public Boolean flag=false;
 
     public Match(Team teamA, Team teamB, int overs, String result) {
         this.teamA = teamA;
         this.teamB = teamB;
         this.overs = overs;
         this.result=result;
+        this.teamARuns=0;
+        this.teamBRuns=0;
+        this.teamAWickets=0;
+        this.teamBWickets=0;
     }
     public Team getTeamA() {
         return teamA;
@@ -36,6 +45,8 @@ public class Match {
             System.out.println("Over " + (i + 1) + ":");
             simulateOver(teamA, teamB);
             if (teamA.wickets==10) {
+                this.result=teamB.getName();
+                flag=false;
                 break;
             }
            
@@ -53,6 +64,8 @@ public class Match {
                 System.out.println(teamA.getName() + " total runs: " + teamA.getTotalRuns());
                 System.out.println(teamB.getName() + " total runs: " + teamB.getTotalRuns());
                 System.out.println("\n"+teamA.getName()+"  wins the match ! \n");
+                this.result=teamA.getName();
+                this.flag=true;
                  f=0;
                  break;
             }
@@ -61,12 +74,27 @@ public class Match {
                 System.out.println(teamA.getName() + " total runs: " + teamA.getTotalRuns());
                 System.out.println(teamB.getName() + " total runs: " + teamB.getTotalRuns());
                 System.out.println("\n"+teamB.getName()+"  wins the match ! \n");
+                this.result=teamB.getName();
+                this.flag=false;
                  f=0;
                  break;
             }
         }
+        this.teamARuns=teamA.totalRuns;
+        this.teamAWickets=teamA.wickets;
+        this.teamBRuns=teamB.totalRuns;
+        this.teamBWickets=teamB.wickets;
+        
         
         if(f==1){
+            if(teamB.totalRuns<teamA.totalRuns){
+                this.flag=true;
+                this.result=teamA.getName();
+            }
+            else{
+                this.flag=false;
+                this.result=teamB.getName();
+            }
         printMatchResult();
         }
     }

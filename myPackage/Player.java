@@ -5,12 +5,14 @@ public class Player {
     private boolean isBatsman;
     private boolean isBowler;
     private boolean isOnStrike;
+    public String teamName;
 
-    public Player(String name, boolean isBatsman, boolean isBowler) {
+    public Player(String name, boolean isBatsman, boolean isBowler,String teamName) {
         this.name = name;
         this.isBatsman = isBatsman;
         this.isBowler = isBowler;
-        this.isOnStrike = false;
+        // this.isOnStrike = false;
+        this.teamName=teamName;
     }
 
     public String getName() {
@@ -37,7 +39,7 @@ public class Player {
     public String toString() {
         return "\nPlayer Name: " + name + 
                 ", Is Batsman: " + isBatsman + 
-                ", Is Bowler: " + isBowler;
+                ", Is Bowler: " + isBowler;                
                 // ", Is On Strike: " + isOnStrike;
     }
 }
