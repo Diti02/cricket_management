@@ -8,9 +8,9 @@ public class PlayerDetailsImpl extends Player implements PlayerDetails {
     private int centuries;
     private boolean isOnStrike;
 
-    public PlayerDetailsImpl(int playerId, String name, boolean isBatsman, boolean isBowler, boolean isWicketKeeper, int teamId, String teamName,
+    public PlayerDetailsImpl(int playerId, String name, boolean isBatsman, boolean isBowler,  int teamId, String teamName,
                              int totalRuns, int totalWickets, int maximumRuns, int maximumWickets, int centuries, boolean isOnStrike) {
-        super(playerId, name, isBatsman, isBowler, isWicketKeeper, teamId, teamName);
+        super(playerId, name, isBatsman, isBowler, teamId, teamName);
         this.totalRuns = totalRuns;
         this.totalWickets = totalWickets;
         this.maximumRuns = maximumRuns;

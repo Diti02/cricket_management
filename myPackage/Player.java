@@ -6,19 +6,20 @@ public class Player {
     private String name;
     private boolean isBatsman;
     private boolean isBowler;
-    private boolean isWicketKeeper;
     private int teamId;
     private String teamName;
+    
 
-    public Player(int playerId, String name, boolean isBatsman, boolean isBowler, boolean isWicketKeeper, int teamId, String teamName) {
+    public Player(int playerId, String name, boolean isBatsman, boolean isBowler, int teamId, String teamName) {
         this.playerId = playerId;
         this.name = name;
         this.isBatsman = isBatsman;
         this.isBowler = isBowler;
-        this.isWicketKeeper = isWicketKeeper;
         this.teamId = teamId;
         this.teamName = teamName;
+        
     }
+    
 
     public int getPlayerId() {
         return playerId;
@@ -36,10 +37,6 @@ public class Player {
         return isBowler;
     }
 
-    public boolean isWicketKeeper() {
-        return isWicketKeeper;
-    }
-
     public int getTeamId() {
         return teamId;
     }
@@ -48,13 +45,14 @@ public class Player {
         return teamName;
     }
 
+    
+
     @Override
     public String toString() {
         return "\nPlayer ID: " + playerId +
                 "\nName: " + name +
                 "\nIs Batsman: " + isBatsman +
                 "\nIs Bowler: " + isBowler +
-                "\nIs Wicket Keeper: " + isWicketKeeper +
                 "\nTeam ID: " + teamId +
                 "\nTeam Name: " + teamName;
     }
