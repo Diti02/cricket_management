@@ -2,21 +2,55 @@ package myPackage;
 
 import java.util.*;
 public class Match {
+    private static int matchIDCounter = 1; // Start matchID from 1
+    private int matchID;
     private Team teamA;
     private Team teamB;
-    private int overs; 
+    private int oversTotal;
+    private int TeamARuns;
+    private int TeamBRuns;
+    private int TeamAWickets;
+    private int TeamBWickets;
+    private int winner;
 
-    public Match(Team teamA, Team teamB, int overs) {
+    public Match(Team teamA, Team teamB, int oversTotal) {
+        this.matchID=matchIDCounter++;
         this.teamA = teamA;
         this.teamB = teamB;
-        this.overs = overs;
+        this.oversTotal = oversTotal;
+        this.TeamARuns=0;
+        this.TeamBRuns=0;
+        this.TeamAWickets=0;
+        this.TeamBWickets=0;
+        this.winner=-1;
+    }
+
+    public int toss(){
+        Random random = new Random();
+        return random.nextInt(2);
     }
 
     public void simulateMatch() {
         System.out.println("\nMatch between " + teamA.getName() + " and " + teamB.getName() + " started!\n");
+
+        //Tossing to choose who will bat first
+        int tossResult=toss();
+        Team battingTeam;
+        Team bowlingTeam;
+
+        if(tossResult == 0){
+            battingTeam = teamA;
+            bowlingTeam = teamB;
+        }
+        else{
+            battingTeam = teamB;
+            bowlingTeam = teamA;
+        }
+
+        System.out.println("Toss result: " + (tossResult == 0 ? teamA.getName() : teamB.getName()) + " won the toss and chose to bat.");
         
         System.out.println("Batting Team:" + teamA.getName() + "\n" + "Bowling Team:" + teamB.getName());
-        for (int i = 0; i < overs; i++) {
+        for (int i = 0; i < oversTotal; i++) {
             System.out.println("Over " + (i + 1) + ":");
             simulateOver(teamA, teamB);
             if (teamA.wickets==10) {
@@ -28,7 +62,7 @@ public class Match {
         
         System.out.println("\n \nBatting Team:" + teamB.getName() + "\n" + "Bowling Team:" + teamA.getName());
          int f=1;
-         for (int i = 0; i < overs; i++) {
+         for (int i = 0; i < oversTotal; i++) {
            System.out.println("Team B requires: "+(teamA.totalRuns-teamB.totalRuns)+ "runs to win");
             System.out.println("Over " + (i + 1) + ":");
             simulateOver(teamB, teamA);
