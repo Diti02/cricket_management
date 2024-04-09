@@ -8,8 +8,15 @@ public class Player {
     private boolean isBowler;
     private int teamId;
     private String teamName;
-    
-
+    //Constructor written for testing
+    public Player(String name, boolean isBatsman, boolean isBowler) {
+        
+        this.name = name;
+        this.isBatsman = isBatsman;
+        this.isBowler = isBowler;
+        
+        
+    }
     public Player(int playerId, String name, boolean isBatsman, boolean isBowler, int teamId, String teamName) {
         this.playerId = playerId;
         this.name = name;

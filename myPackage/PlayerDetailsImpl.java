@@ -45,9 +45,39 @@ public class PlayerDetailsImpl extends Player implements PlayerDetails {
     }
 
     @Override
+    public void setTotalRuns(int runs) {
+        this.totalRuns+= runs;        
+    }
+
+    @Override
+    public void setTotalWickets(int wickets) {
+        this.totalWickets+= wickets;
+    }
+
+    @Override
+    public void setMaximumRuns() {
+        this.maximumRuns+=totalRuns;
+    }
+
+    @Override
+    public void setMaximumWickets() {
+        this.maximumWickets+=totalWickets;
+    }
+
+    @Override
+    public void setCenturies() {
+        this.centuries+=1;
+    }
+
+    @Override
     public boolean isOnStrike() {
         return isOnStrike;
     }
+    public void setisOnStrike() {
+        this.isOnStrike=!this.isOnStrike;
+    }
+
+
 
     @Override
     public String toString() {
