@@ -87,12 +87,36 @@ public class Match {
         
     }
 
+    private void rotateStrike(Player currentBatsman, Team battingTeam){
+        int currentBatsmanIndex = battingTeam.getcurrentBatsmanIndex();
+        int NotOnStrikeIndex = battingTeam.getIsNotOnStrikeIndex();
+        
+        // Swap the indices of current batsman and batsman on strike
+        battingTeam.setCurrentBatsmanIndex(NotOnStrikeIndex);
+        battingTeam.setIsNotOnStrikeIndex(currentBatsmanIndex);
+        
+        // Update the current batsman
+        currentBatsman = battingTeam.getCurrentBatsman();
+        
+        System.out.println("Current batsman: " + currentBatsman.getName() + " & " + "Non-Striker: " + battingTeam.getIsNotOnStrike().getName());
+    }
+    
+
    private void simulateOver(Team battingTeam, Team bowlingTeam) {
         Random random = new Random();
-        int Totalrun=0;        
+        int Totalrun=0;     
+         // Get the current batsman
+         Player currentBatsman = battingTeam.getCurrentBatsman();
+        
+         // Get the current bowler
+         Player currentBowler = bowlingTeam.getCurrentBowler();
+     
+         System.out.println("\nCurrent batsman: " + currentBatsman.getName() + " & " + "Non-Striker: "+ battingTeam.getIsNotOnStrike().getName());
+        // System.out.println("\nCurrent batsman: " + currentBatsman.getName());
+         System.out.println("Current bowler: " + currentBowler.getName());   
         for (int ball = 1; ball <= 6; ball++) {
             int runs = random.nextInt(8); //0-6 for runs, 7 for wicket
-
+            
             if (runs == 0) {
                 System.out.println("Ball " + ball + ": " + battingTeam.getName() + " scores no run.");
                 
@@ -100,20 +124,41 @@ public class Match {
             else if (runs == 7) {//random number 7 for wicket
                 battingTeam.updateWicketsFell(1);
                 System.out.println("Ball " + ball + ": " + battingTeam.getName() + " 1 wicket fell");
+                System.out.println(currentBatsman.getName() + " is out! ");               
+                
+                if(battingTeam.getWicketsFell()!=10){
+                    
+                    battingTeam.setNextBatsman(battingTeam.getnextToBeNotOnStrike());
+                    battingTeam.setnextToBeNotOnStrike();
+                    currentBatsman = battingTeam.getCurrentBatsman(); // Update the current batsman
+                    System.out.println(currentBatsman.getName()+" comes to bat");
+                    System.out.println("Current batsman: " + currentBatsman.getName() + " & " + "Non-Striker: "+ battingTeam.getIsNotOnStrike().getName() );
+                    
+                    
+                    
+                   
+                }
             } 
+            
             else {
                 System.out.println("Ball " + ball + ": " + battingTeam.getName() + " scores " + runs + " runs.");
+                if(runs==1 || runs==3 || runs==5){
+                    System.out.println("Strike Changed extra 1 run taken");
+                    rotateStrike(currentBatsman, battingTeam);                    
+                    Totalrun+=1;
+                }
                 Totalrun+=runs;
                 battingTeam.updateScore(runs);
             }          
             if (battingTeam.getWicketsFell()==10) {
                 break;
             }
+            bowlingTeam.setNextBowler();
         }
 
         System.out.println("End of Over: " + battingTeam.getName());
         System.out.println("Runs scored: "+Totalrun);
-        System.out.println("Wickets "+ battingTeam.getWicketsFell() +"\n");
+        System.out.println("Wickets Fell "+battingTeam.getName()+" :"+ battingTeam.getWicketsFell() +"\n");
     }
 
     private void printMatchResult() {
