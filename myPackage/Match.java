@@ -56,7 +56,7 @@ public class Match {
         }
         System.out.println("Runs scored by : "+battingTeam.getName()+":"+ battingTeam.getTotalRuns()+ ", Wickets: "+ battingTeam.getWicketsFell());
         
-        System.out.println("\n Batting Team:" + bowlingTeam.getName() + "\n" + "Bowling Team:" + battingTeam.getName());
+        System.out.println("\nBatting Team:" + bowlingTeam.getName() + "\n" + "Bowling Team:" + battingTeam.getName());
         int matchEnd=0;
         //All overs for 2nd batting team
          for (int i = 1; i <= oversTotal; i++) {
@@ -124,6 +124,7 @@ public class Match {
             else if (runs == 7) {//random number 7 for wicket
                 battingTeam.updateWicketsFell(1);
                 System.out.println("Ball " + ball + ": " + battingTeam.getName() + " 1 wicket fell");
+                currentBatsman = battingTeam.getCurrentBatsman();
                 System.out.println(currentBatsman.getName() + " is out! ");               
                 
                 if(battingTeam.getWicketsFell()!=10){
