@@ -25,6 +25,17 @@ public class Match {
         Random random = new Random();
         return random.nextInt(2);
     }
+    public Team getTeamA(){
+        return this.teamA;
+    }
+    public Team getTeamB(){
+        return this.teamB;
+    }
+    public int getOvers(){
+        return this.oversTotal;
+    }
+    
+    
 
     public void simulateMatch() {
         System.out.println("\nMatch between " + teamA.getName() + " and " + teamB.getName() + " started!\n");
@@ -68,15 +79,18 @@ public class Match {
             if ( bowlingTeam.getWicketsFell() == 10 || bowlingTeam.getTotalRuns() > battingTeam.getTotalRuns()) {
                 System.out.println("Match finished!");
                 matchEnd=1;
-                System.out.println(battingTeam.getName() + " total runs: " + teamA.getTotalRuns());
-                System.out.println(bowlingTeam.getName() + " total runs: " + bowlingTeam.getTotalRuns());
+                
+                
                 if(bowlingTeam.getWicketsFell() == 10 ){
                     winner=0;
+                    System.out.println(battingTeam.getName() + " total runs: " + teamA.getTotalRuns());
+                    System.out.println(bowlingTeam.getName() + " total runs: " + bowlingTeam.getTotalRuns());
                     System.out.println(battingTeam.getName()+" wins the match ! \n");
                 }
                 else if(bowlingTeam.getTotalRuns() > battingTeam.getTotalRuns()){
                     winner=1;
-                    System.out.println(bowlingTeam.getName()+" wins the match ! \n");
+                    System.out.println(bowlingTeam.getName() + " total runs: " + bowlingTeam.getTotalRuns());
+                    System.out.println(bowlingTeam.getName()+" wins the match by "+(battingTeam.getWicketsFell()-bowlingTeam.getWicketsFell())+" wickets!");
                 }
                 break;
             }                      
@@ -169,10 +183,10 @@ public class Match {
 
         if (teamA.getTotalRuns() > teamB.getTotalRuns()) {
             winner=0;
-            System.out.println(teamA.getName() + " wins the match by "+ (teamA.getTotalRuns()-teamB.getTotalRuns()) +"runs!");
+            System.out.println(teamA.getName() + " wins the match by "+ (teamA.getTotalRuns()-teamB.getTotalRuns()) +" runs!");
         } else if (teamA.getTotalRuns() < teamB.getTotalRuns()) {
             winner=1;
-            System.out.println(teamB.getName() + " wins the match by "+ (teamB.getTotalRuns()-teamA.getTotalRuns())+"runs!");
+            System.out.println(teamB.getName() + " wins the match by "+ (teamB.getTotalRuns()-teamA.getTotalRuns())+" runs!");
         } else {
             winner=-1;
             System.out.println("The match ended in a tie!");

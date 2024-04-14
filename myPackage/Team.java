@@ -17,8 +17,8 @@ public class Team implements TeamDetails{
     
     public Team(String name,String fileName){
         this.players=new ArrayList<>();
-        readPlayersFromFile(fileName,players);
         this.name = name;
+        readPlayersFromFile(fileName,players);
         this.totalRuns = 0;
         this.wicketsFell = 0;
         this.currentBatsmanIndex=0;
@@ -50,10 +50,10 @@ public class Team implements TeamDetails{
                     // Create player based on type
                     switch (playerType) {
                         case "Batsman":
-                            players.add(new Player(playerName, true, false));
+                            players.add(new Player(playerName, true, false,this.name));
                             break;
                         case "Bowler":
-                            players.add(new Player(playerName, false, true));
+                            players.add(new Player(playerName, false, true,this.name));
                             break;
                     }
 
@@ -67,7 +67,7 @@ public class Team implements TeamDetails{
 
                     // Create player based on type
                     if((playerType.equals("Batsman") && playerType2.equals("Bowler")) || (playerType.equals("Bowler") && playerType2.equals("Batsman"))){
-                        players.add(new Player(playerName, true, true));
+                        players.add(new Player(playerName, true, true,this.name));
                     }
                     playerCount++; // Increment player count
                 }
@@ -96,7 +96,9 @@ public class Team implements TeamDetails{
         this.IsNotOnStrike=1;//next index of currentBatsman index   
         this.nextToBeNotOnStrike=2;    
     }
-
+    public ArrayList<Player> getPlayers(){
+        return players;
+    } 
     public String getName() {
         return name;
     }
