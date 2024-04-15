@@ -6,7 +6,7 @@ import myPackage.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatchDAO {
+public abstract class MatchDAO {
     // Method to insert a match into the database
     public static void insertMatch(Match match) {
         try (Connection connection = JDBC_connect.getConnection();

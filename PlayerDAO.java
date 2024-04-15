@@ -1,7 +1,7 @@
 import java.sql.*;
 import myPackage.Player;
 
-public class PlayerDAO {
+public abstract class PlayerDAO {
     public static void insertPlayer(Player player) {
         try (Connection connection = JDBC_connect.getConnection()) {
             // Check if the player with the same name and team does not exist then insert

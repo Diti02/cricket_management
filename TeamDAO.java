@@ -1,7 +1,8 @@
 import myPackage.*;
 import java.sql.*;
 
-public class TeamDAO {
+
+public abstract class TeamDAO {
     public static void insertTeam(Team team) {
         try {
             Connection con = JDBC_connect.getConnection();
