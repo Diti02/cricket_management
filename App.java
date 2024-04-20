@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 class App {
-    public static void main(String[] args) {      
+    public static void main(String[] args) throws InvalidTeamException {      
         
         // Create Team objects
         Team teamA = new Team("India", "TeamA.txt");

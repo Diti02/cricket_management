@@ -15,7 +15,7 @@ public class Team implements TeamDetails{
     private int IsNotOnStrike;
     private int nextToBeNotOnStrike;
     
-    public Team(String name,String fileName){
+    public Team(String name,String fileName) throws InvalidTeamException{
         this.players=new ArrayList<>();
         this.name = name;
         readPlayersFromFile(fileName,players);
@@ -29,7 +29,7 @@ public class Team implements TeamDetails{
         
     }
 
-    private void readPlayersFromFile(String fileName, ArrayList<Player> players) {
+    private void readPlayersFromFile(String fileName, ArrayList<Player> players) throws InvalidTeamException{
         try {
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
@@ -75,18 +75,20 @@ public class Team implements TeamDetails{
             scanner.close(); // Close the scanner
             
             // Check if the total number of players is exactly 11
-            if (playerCount != 11) {
-                throw new IllegalArgumentException("A team must have exactly 11 players.");
-            }
+            Validation.validateTeamSize(players);
+            // if (playerCount != 11) {
+            //     throw new IllegalArgumentException("A team must have exactly 11 players.");
+            // }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public Team(String name, ArrayList<Player> players) {
-        if (players.size() != 11) {
-            throw new IllegalArgumentException("A team must have exactly 11 players.");
-        }
+    public Team(String name, ArrayList<Player> players) throws InvalidTeamException {
+        Validation.validateTeamSize(players);
+        // if (players.size() != 11) {
+        //     throw new IllegalArgumentException("A team must have exactly 11 players.");
+        // }
         this.name = name;
         this.players = players;
         this.totalRuns = 0;
