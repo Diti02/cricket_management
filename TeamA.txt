@@ -1,0 +1,11 @@
+Rohit Sharma,Batsman,Bowler
+Virat Kohli,Batsman,Bowler
+Ashwin,Bowler
+Shami,Bowler
+Gill,Batsman
+Rishav Pant,Batsman,Bowler
+Rinku,Batsman
+Verma,Batsman
+Bumbrah,Bowler
+Ravindra Jadeja,Batsman,Bowler
+KL Rahul,Batsman

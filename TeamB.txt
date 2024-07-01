@@ -1,0 +1,11 @@
+David Warner,Batsman,Bowler
+Aaron Finch,Batsman,Bowler
+Josh,Bowler
+Adam,Bowler
+Steve Smith,Batsman
+Mitchell,Batsman,Bowler
+Glenn Maxwell,Batsman
+Marcus Stoinis,Batsman
+Alex,Bowler
+Pat,Batsman,Bowler
+Labuschagne,Batsman
