@@ -2,6 +2,7 @@ package myPackage;
 
 
 public class Player {
+    private static int playerCount=1;
     private int playerId;
     private String name;
     public boolean isBatsman;
@@ -9,12 +10,12 @@ public class Player {
     private int teamId;
     private String teamName;
     //Constructor written for testing
-    public Player(String name, boolean isBatsman, boolean isBowler) {
-        
+    public Player(String name, boolean isBatsman, boolean isBowler,String teamName) {
+        this.playerId=playerCount++;
         this.name = name;
         this.isBatsman = isBatsman;
         this.isBowler = isBowler;
-        
+        this.teamName=teamName;
         
     }
     public Player(int playerId, String name, boolean isBatsman, boolean isBowler, int teamId, String teamName) {

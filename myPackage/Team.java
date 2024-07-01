@@ -15,10 +15,10 @@ public class Team implements TeamDetails{
     private int IsNotOnStrike;
     private int nextToBeNotOnStrike;
     
-    public Team(String name,String fileName){
+    public Team(String name,String fileName) throws InvalidTeamException{
         this.players=new ArrayList<>();
-        readPlayersFromFile(fileName,players);
         this.name = name;
+        readPlayersFromFile(fileName,players);
         this.totalRuns = 0;
         this.wicketsFell = 0;
         this.currentBatsmanIndex=0;
@@ -29,7 +29,7 @@ public class Team implements TeamDetails{
         
     }
 
-    private void readPlayersFromFile(String fileName, ArrayList<Player> players) {
+    private void readPlayersFromFile(String fileName, ArrayList<Player> players) throws InvalidTeamException{
         try {
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
@@ -50,10 +50,10 @@ public class Team implements TeamDetails{
                     // Create player based on type
                     switch (playerType) {
                         case "Batsman":
-                            players.add(new Player(playerName, true, false));
+                            players.add(new Player(playerName, true, false,this.name));
                             break;
                         case "Bowler":
-                            players.add(new Player(playerName, false, true));
+                            players.add(new Player(playerName, false, true,this.name));
                             break;
                     }
 
@@ -67,7 +67,7 @@ public class Team implements TeamDetails{
 
                     // Create player based on type
                     if((playerType.equals("Batsman") && playerType2.equals("Bowler")) || (playerType.equals("Bowler") && playerType2.equals("Batsman"))){
-                        players.add(new Player(playerName, true, true));
+                        players.add(new Player(playerName, true, true,this.name));
                     }
                     playerCount++; // Increment player count
                 }
@@ -75,18 +75,20 @@ public class Team implements TeamDetails{
             scanner.close(); // Close the scanner
             
             // Check if the total number of players is exactly 11
-            if (playerCount != 11) {
-                throw new IllegalArgumentException("A team must have exactly 11 players.");
-            }
+            Validation.validateTeamSize(players);
+            // if (playerCount != 11) {
+            //     throw new IllegalArgumentException("A team must have exactly 11 players.");
+            // }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public Team(String name, ArrayList<Player> players) {
-        if (players.size() != 11) {
-            throw new IllegalArgumentException("A team must have exactly 11 players.");
-        }
+    public Team(String name, ArrayList<Player> players) throws InvalidTeamException {
+        Validation.validateTeamSize(players);
+        // if (players.size() != 11) {
+        //     throw new IllegalArgumentException("A team must have exactly 11 players.");
+        // }
         this.name = name;
         this.players = players;
         this.totalRuns = 0;
@@ -96,7 +98,9 @@ public class Team implements TeamDetails{
         this.IsNotOnStrike=1;//next index of currentBatsman index   
         this.nextToBeNotOnStrike=2;    
     }
-
+    public ArrayList<Player> getPlayers(){
+        return players;
+    } 
     public String getName() {
         return name;
     }
