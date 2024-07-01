@@ -7,6 +7,7 @@ public abstract class TeamDAO {
         try {
             Connection con = JDBC_connect.getConnection();
             if (con != null) {
+                
                 // Check if the team name does not already exist then insert
                 if (!teamExists(con, team.getName())) {                   
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO team (teamName) VALUES (?)");
